@@ -11,9 +11,9 @@ export default async function Home({searchParams}:{SearchParams: Promise<{query?
   const query = (await searchParams).query;
 
   const posts = [{
-    _createdAt: 'Yesterday',
+    _createdAt: new Date(),
     views: 100,
-    author: 'John Doe',
+    author: {_id:1, name: 'John Doe'},
     _id: '1',
     discription: 'A platform where you can pitch your startup to investors, get feedback and get funded.',
     image: 'https://images.unsplash.com/photo-1634170380004-4',
@@ -41,11 +41,15 @@ export default async function Home({searchParams}:{SearchParams: Promise<{query?
             {query ? `search results for ${query}` : 'Latest Startups'} 
           </p>
 
-          {/* <ul className='mt-7 card_grid'>
-             {posts.map(post: StartupCardType, index: number) => (
-              <StartupCard/>
-             )}
-          </ul> */}
+          <ul className='mt-7 card_grid'>
+             {posts?.length > 0 ? (
+             posts.map((post: StartupCardType) => (
+              <StartupCard key= {post?._id} post ={post}/>
+          ))
+          ) : (
+            <p className="no-results">No startups found</p>
+            )}
+          </ul>
       </section>
        
     </>
