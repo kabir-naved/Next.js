@@ -6,8 +6,8 @@ import { SearchParams } from 'next/dist/server/request/search-params';
 import { cacheTag } from 'next/dist/server/use-cache/cache-tag';
 import StartupCard from '@/components/StartupCard';
 
-
-export default async function Home({searchParams}:{SearchParams: Promise<{query?: string}>} ) {
+// export default async function Home({searchParams}:{SearchParams: Promise<{query?: string}>} ) {
+export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string }>} ) {
   const query = (await searchParams).query;
 
   const posts = [{
@@ -16,7 +16,7 @@ export default async function Home({searchParams}:{SearchParams: Promise<{query?
     author: {_id:1, name: 'John Doe'},
     _id: '1',
     discription: 'A platform where you can pitch your startup to investors, get feedback and get funded.',
-    image: 'https://images.unsplash.com/photo-1634170380004-4',
+    image: 'https://t4.ftcdn.net/jpg/03/08/69/75/360_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpg',
     category: 'Technology',
     title: 'Tech Beast'
   }]
